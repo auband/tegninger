@@ -1,37 +1,56 @@
 <!DOCTYPE html>
+<html lang="no">
 
 <head> 
-    <script></script>
+    <script src="scripts.js">       
+
+    </script>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <style></style>
 </head>
 
 <body>
     <div class="header">
-        <h1>Tegninger.no</h1>
+        <div class="row">
+            <div class="col-6">
+                <h1>Tegninger.no</h1>
+            </div>
+            <div class="col-6">
+                 <div id="printDialog" class="stickyPrintDialog">
+                    Vi samler alle tegninger i ett dokument for deg. Trykk på "Last ned" når du har samlet alle tegningene du ønsker.
+                </div>
+
+                <input type="button" value="Last ned" class="downloadNowButton" />
+                
+                    <!--<a href="" onclick="CancelDocument">Avbryt</a>
+                    <a href="" onclick="HideDialog" style="float:right;">Skjul dialogen</a>-->
+                
+            </div>
+        </div>
+        
+
+       
+
     </div>
 
-    <div class="row"> 
+    <div class="row" style="height:100%"> 
 
-        <div class="col-3"></div>
 
-        <div class="col-3">
+        <div class="col-6">
+            <div class="imgContainer" style="">
+                <img src="v_img1.svg" class="downloadableImage">
+            </div>
+            </br>
+            <input type="button" value="Legg til nedlasting" class="downloadButton" onclick="AddToPrint('v_img1.svg');" />
+        </div>
+
+        <div class="col-6">
             <div class="imgContainer">
-                <img src="v_img1.svg" width="70%">
+                <img src="v_img2.svg" class="downloadableImage">
             </div>
             </br>
             <input type="button" value="Legg til nedlasting" class="downloadButton" />
         </div>
-
-        <div class="col-3">
-            <div class="imgContainer">
-                <img src="v_img2.svg" width="70%">
-            </div>
-            </br>
-            <input type="button" value="Legg til nedlasting" class="downloadButton" />
-        </div>
-
-        <div class="col-3"></div>
 
     </div>
 
