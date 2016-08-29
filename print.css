@@ -1,5 +1,20 @@
-img[class|=downloadableImage]{
-    max-height: 100000mm;
-    height:297mm;
-    width:210mm; 
+/*@media screen {
+    .printable { display: none; }
+    .non-printable { display: block; }
 }
+
+@media print {
+    .printable { display: block; }
+    .non-printable { display: none; }
+}*/
+
+@media print {   
+
+    img[class|=downloadableImage]{
+        max-height: 100000mm;
+        height:297mm;
+        width:210mm; 
+        page-break-after: always;
+    }
+}
+

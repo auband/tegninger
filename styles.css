@@ -128,15 +128,6 @@ html {
     border: 2px solid green;
 }
 
-.downloadableImage{
-    width: 70%;
-    vertical-align: middle;
-    min-height:15em;
-    max-height:15em;
-}
-
-
-
 .printDialog{
     color: white;
     padding: 2%;
@@ -146,11 +137,6 @@ html {
     border:2px solid white;
     border-radius:5px;
 }
-/*
-.logoText{
-    font-family: 'Indie Flower', cursive;
-    font-size: 50px;
-}*/
 
 .logoText, a.logoText:visited, a.logoText:active, a.logoText:hover{
     font-family: 'Indie Flower', cursive;
@@ -161,4 +147,30 @@ html {
 
 .hidden{
     visibility: hidden;
+}
+
+@media screen{
+
+    .printPreview{
+        border: 1px solid black;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        width: 50%;
+
+        text-align: center;        
+        display: inline-block;
+
+        box-shadow: 10px 10px 5px #888888;
+    }
+
+    .printPreviewColumn{
+        text-align: center;
+    }
+
+    .downloadableImage{
+        width: 70%;
+        vertical-align: middle;
+        min-height:15em;
+        max-height:15em;
+    }
 }
