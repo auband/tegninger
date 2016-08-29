@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html lang="no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
 <head> 
     <script src="scripts.js">       
 
     </script>
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
     <style></style>
 </head>
 
-<body>
+<body onload="OnLoadIndexPage()">
     <div class="header">
         <div class="row">
             <div class="col-6">
-                <h1>Tegninger.no</h1>
+                
+                <a href="index.htm" class="logoText">TEGNINGER.NO</a>
+                
             </div>
             <div class="col-6">
-                 <div id="printDialog" class="stickyPrintDialog">
-                    Vi samler alle tegninger i ett dokument for deg. Trykk på "Last ned" når du har samlet alle tegningene du ønsker.
+                 <div id="printDialog" class="printDialog">
+                    Vi samler alle tegninger i ett dokument for deg. Trykk på "Print tegninger" når du har samlet alle tegningene du ønsker.
+                    <br/>
+                    <input id="btnDownloadNow" type="button" value="Print 0 tegninger" class="downloadNowButton" onclick="GoToPrintPage()" />
+                    
+                    <a href="" class="emptyDoc" onclick="PurgeSelectedImages();">Tøm dokumentet</a>
                 </div>
-
-                <input type="button" value="Last ned" class="downloadNowButton" />
-                
-                    <!--<a href="" onclick="CancelDocument">Avbryt</a>
-                    <a href="" onclick="HideDialog" style="float:right;">Skjul dialogen</a>-->
                 
             </div>
         </div>
-        
-
-       
-
     </div>
 
-    <div class="row" style="height:100%"> 
+    <div class="row"> 
 
 
         <div class="col-6">
-            <div class="imgContainer" style="">
-                <img src="v_img1.svg" class="downloadableImage">
+            <div class="imgContainer">
+
+                <div class="downloadImgCounterContainer">0</div>
+                <img id="v_img1.svg" src="v_img1.svg" class="downloadableImage">
             </div>
             </br>
-            <input type="button" value="Legg til nedlasting" class="downloadButton" onclick="AddToPrint('v_img1.svg');" />
+            <input type="button" value="Legg til print" class="downloadButton" onclick="AddToPrint('v_img1.svg', false);" />
         </div>
 
         <div class="col-6">
             <div class="imgContainer">
-                <img src="v_img2.svg" class="downloadableImage">
+                <div class="downloadImgCounterContainer">0</div>
+                <img id="v_img2.svg" src="v_img2.svg" class="downloadableImage">
             </div>
             </br>
-            <input type="button" value="Legg til nedlasting" class="downloadButton" />
+            <input type="button" value="Legg til print" class="downloadButton"  onclick="AddToPrint('v_img2.svg', false);" />
         </div>
 
     </div>

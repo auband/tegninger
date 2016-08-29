@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<head> 
+    <script src="scripts.js">       
+
+    </script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="print.css" type="text/css" media="print">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <style></style>
+</head>
+<body onload="OnLoadPrintPage()">
+
+<div class="header">
+    <div class="row">
+        <div class="col-6">
+            <a href="index.htm" class="logoText">TEGNINGER.NO</a>            
+        </div>
+        <div class="col-6">
+            <div id="printDialog" class="printDialog">
+                Dette er dine valgte tegninger. Trykk 'Åpne printdialog'' for å starte å printe eller trykk 'Velg flere'' for å velge flere tegninger
+                <br/>
+                
+                <input id="btnDownloadNow" type="button" value="Åpne printdialog" class="downloadNowButton" onclick="OpenPrintDialog()" />
+                <input id="btnDownloadNow" type="button" value="Velg flere" class="downloadNowButton" onclick="GoToIndexPage()"  />
+                
+                <br>
+            </div>
+            
+        </div>
+    </div>
+</div>
+    
+<div id="imgContainer">
+</div>
+
+
+</body>
+</html>

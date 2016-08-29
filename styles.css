@@ -56,35 +56,38 @@ html {
     font-family: "Lucida Sans", sans-serif;
 }
 .header {
-    background-color: #9933cc;
+    /*background-color: MediumSlateBlue;*/
+    background-color: black;
     color: #ffffff;
-    padding: 15px;
+    
 }
-/*.menu ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+
+.downloadImgCounterContainer{
+    color: black;
+    background-color: black;
 }
-.menu li {
-    padding: 8px;
-    margin-bottom: 7px;
-    background-color :#33b5e5;
-    color: #ffffff;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+.downloadImgCounterContainerSelected{
+    color: white;
+    background-color: green;
 }
-.menu li:hover {
-    background-color: #0099cc;
-}*/
+
+.emptyDoc{
+    color: white;
+    text-align: center;
+    font-size: x-small;  
+    padding-left: 10%;  
+}
 
 .downloadButton {
-	-moz-box-shadow: 0px 0px 0px 2px #3dc21b;
-	-webkit-box-shadow: 0px 0px 0px 2px #3dc21b;
-	box-shadow: 0px 0px 0px 2px #3dc21b;
-	background-color:#2aa64b;
+	-moz-box-shadow: 0px 0px 0px 2px white;
+	-webkit-box-shadow: 0px 0px 0px 2px white;
+	box-shadow: 0px 0px 0px 2px white;
+	background-color:green;
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
 	border-radius:10px;
-	border:1px solid #18ab29;
+	border:1px solid white;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
@@ -92,36 +95,37 @@ html {
 	font-size:19px;
 	padding:12px 37px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #2f6627;
 }
 
 .downloadNowButton {
-	-moz-box-shadow: 0px 0px 0px 2px #3dc21b;
-	-webkit-box-shadow: 0px 0px 0px 2px #3dc21b;
-	box-shadow: 0px 0px 0px 2px #3dc21b;
-	background-color:#2aa64b;
+	background-color:green;
 	-moz-border-radius:10px;
 	-webkit-border-radius:10px;
 	border-radius:10px;
-	border:1px solid #18ab29;
+	border:none;
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
 	font-family:Arial;
-	font-size:12px;
-    padding:12px;
+	font-size:18px;
+    padding:7px;
 	text-decoration:none;
-	text-shadow:0px 1px 0px #2f6627;
-    width: 50%;
-    margin-left: 25%;
-    margin-right: 25%;
-    margin-bottom: 5%;
+    min-width: 45%;
+    /*margin-left: 25%;
+    margin-right: 25%;*/
+    margin-bottom: 1%;
+    margin-top: 5%;
 }
 
 .imgContainer{
     border: 2px solid black;
     text-align: center;
     min-height:15em;
+    border-radius:5px;
+}
+
+.imgContainerSelected{
+    border: 2px solid green;
 }
 
 .downloadableImage{
@@ -131,27 +135,30 @@ html {
     max-height:15em;
 }
 
-.stickyPrintDialog{
-    padding: 1%;
-    color: black;
-    /*position: fixed;*/
-    /*left: 50%;
-    top: 1%;
-    z-index: 100;*/
+
+
+.printDialog{
+    color: white;
+    padding: 2%;
     border-top: 0;
-    background-color: orange;
+    background-color: transparent;
     font-size: small;
+    border:2px solid white;
+    border-radius:5px;
+}
+/*
+.logoText{
+    font-family: 'Indie Flower', cursive;
+    font-size: 50px;
+}*/
+
+.logoText, a.logoText:visited, a.logoText:active, a.logoText:hover{
+    font-family: 'Indie Flower', cursive;
+    font-size: 50px;
+    text-decoration: none;
+    color: white;
 }
 
 .hidden{
     visibility: hidden;
 }
-
-
-/*.myButton:hover {
-	background-color:#5cbf2a;
-}
-.myButton:active {
-	position:relative;
-	top:1px;
-}*/
