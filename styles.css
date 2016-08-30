@@ -156,6 +156,12 @@ html {
     padding-left: 5%;
 }
 
+.printedSubtitle{
+    font-family: 'Indie Flower', cursive;
+    font-size: 20px;
+    color: white;
+}
+
 .hidden{
     visibility: hidden;
 }
