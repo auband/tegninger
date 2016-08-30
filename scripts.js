@@ -79,7 +79,7 @@ function OnLoadPrintPage(){
         printPreviewDiv.classList.add("printPreview");
 
         var printedLogoBottom = document.createElement("div");
-        printedLogoBottom.innerHTML = "TEGNINGER.NO"
+        printedLogoBottom.innerHTML = "TEGNINGER.NO<p>Gratis tegninger for fargelegging for store og små</p>"
         printedLogoBottom.classList.add("printedLogo");
         printedLogoBottom.classList.add("print-only");      
 
