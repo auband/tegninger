@@ -77,10 +77,15 @@ function OnLoadPrintPage(){
 
         var printPreviewDiv = document.createElement("div");
         printPreviewDiv.classList.add("printPreview");
-        
+
+        var printedLogoBottom = document.createElement("div");
+        printedLogoBottom.innerHTML = "TEGNINGER.NO"
+        printedLogoBottom.classList.add("printedLogo");
+        printedLogoBottom.classList.add("print-only");      
 
         printPreviewDiv.appendChild(createdImg);
-        
+        printPreviewDiv.appendChild(printedLogoBottom);
+                
 
         createdImageColumnDiv.appendChild(printPreviewDiv);
         currentImageRow.appendChild(createdImageColumnDiv);
@@ -123,6 +128,7 @@ function CreateAdRow(){
     var adRow = document.createElement("div");
     adRow.classList.add("row");
     adRow.classList.add("ad");
+    adRow.classList.add("non-printable");
     adRow.appendChild(adColumn);
 
     return adRow;

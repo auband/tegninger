@@ -76,7 +76,7 @@ html {
     color: white;
     text-align: center;
     font-size: x-small;  
-    padding-left: 10%;  
+    padding-left: 2%;
 }
 
 .downloadButton {
@@ -145,6 +145,17 @@ html {
     color: white;
 }
 
+.printedLogo{
+    width: 100%;
+    font-family: 'Indie Flower', cursive;
+    font-size: 50px;
+    text-decoration: none;
+    color: white;
+    background-color: black;
+    max-height: 5%;
+    padding-left: 5%;
+}
+
 .hidden{
     visibility: hidden;
 }
@@ -156,6 +167,7 @@ html {
         margin-top: 5%;
         margin-bottom: 5%;
         width: 50%;
+        min-width: 10em; 
 
         text-align: center;        
         display: inline-block;
@@ -173,4 +185,19 @@ html {
         min-height:15em;
         max-height:15em;
     }
+
+    .print-only { display: none; }
+    .non-printable { display: block; }
+}
+
+@media print {   
+
+    img[class|=downloadableImage]{
+        max-height: 100000mm;
+        height:250mm;
+        width:200mm; 
+    }
+
+    .print-only { display: block; }
+    .non-printable { display: none; }    
 }
