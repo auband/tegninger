@@ -163,16 +163,18 @@ html {
     font-family: 'Indie Flower', cursive;
     font-size: 50px;
     text-decoration: none;
-    color: white;
-    background-color: black;
+    color: black;
+    background-color: white;
     max-height: 5%;
     padding-left: 5%;
+    border:2px solid black;
+    border-radius:5px;
 }
 
 .printedSubtitle{
     font-family: 'Indie Flower', cursive;
     font-size: 20px;
-    color: white;
+    color: black;
 }
 
 .hidden{
