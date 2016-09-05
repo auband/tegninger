@@ -54,7 +54,7 @@
     <!-- filter -->
     <div class="row" style="background-color:#1A2520">
 
-        <div class="col-12" style="width:100%; height:100%">
+        <div class="col-10" style="width:100%; height:100%">
             <select id="filterSelect" name="filterSelect">
                 <option value="letters-numbers">Bokstaver og tall</option>
                 <option value="animals">Dyr</option>
@@ -63,8 +63,11 @@
                 <option value="patterns">Mønstre</option>
                 <option value="disney">Disney</option>
                 <option value="nintendo">Nintendo</option>
-            </select>
+            </select>            
             <br/>
+        </div>
+        <div class='col-2'>
+            <input type="button" onclick="ApplyFilter()" value="Vis filter">
         </div>
     </div>
 

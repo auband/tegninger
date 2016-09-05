@@ -153,6 +153,9 @@ function FillContentFromJson(json, startIndex){
 
     jQuery.each(json, function(i, val){
 
+        if(i < startIndex)
+            return;
+
         var appendAdRowAfter = false;
 
         if(createRow){
@@ -205,9 +208,40 @@ function FillContentFromJson(json, startIndex){
 
         if(appendAdRowAfter){
             contentDiv.append(CreateAdRow);
-        }        
+        }       
+        
+        imgContainerDiv.data('tags', val.tags);  
 
     });
+}
+
+function ApplyFilter(){
+    var filter = $('#filterSelect').popSelect('value');
+
+    if(filter.length == 0){
+        $(".imgContainer").each(function(){$(this).parent().show()});
+        return;    
+    }
+
+    $(".imgContainer").each(function(){
+        var hide = true;
+
+        jQuery.each($(this).data("tags"), function(i, val){           
+
+            if(jQuery.inArray(val, filter) > -1){
+                //image attribute in filter. do not hide
+                hide = false;                
+            }
+        });
+
+        if(hide){
+            $(this).parent().hide();
+        }
+        else{
+            $(this).parent().show();
+        }
+        
+    });;
 }
 
 function TagValueToName(v){
