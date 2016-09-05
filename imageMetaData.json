@@ -1,0 +1,14 @@
+[
+    {"path":"v_img1.svg", "name": "v_img1.svg", "tags":["patterns", "test"]},
+    {"path":"v_img2.svg", "name": "v_img2.svg", "tags":["humans", "nintendo"]},
+    {"path":"v_img3.svg", "name": "v_img3.svg", "tags":["patterns", "test", "disney"]},
+    {"path":"v_img4.svg", "name": "v_img4.svg", "tags":["fruit-vegs", "nintendo"]},
+    {"path":"v_img5.svg", "name": "v_img5.svg", "tags":["letters-numbers"]},
+    {"path":"v_img6.svg", "name": "v_img6.svg", "tags":["humans", "nintendo"]},
+    {"path":"v_img1.svg", "name": "v_img1.svg", "tags":["patterns", "test"]},
+    {"path":"v_img2.svg", "name": "v_img2.svg", "tags":["humans", "nintendo"]},
+    {"path":"v_img3.svg", "name": "v_img3.svg", "tags":["patterns", "test", "disney"]},
+    {"path":"v_img4.svg", "name": "v_img4.svg", "tags":["fruit-vegs", "nintendo"]},
+    {"path":"v_img5.svg", "name": "v_img5.svg", "tags":["letters-numbers"]},
+    {"path":"v_img6.svg", "name": "v_img6.svg", "tags":["humans", "nintendo"]}
+]

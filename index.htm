@@ -6,9 +6,26 @@
     <title>TEGNINGER.NO</title>
     <link rel="icon" type="image/png" href="letter_t_favicon.png">
 
-    <script src="scripts.js">    </script>
+    <script src="scripts.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <script src="jquery-3.1.0.js"></script>
+
+    <!--popSelect-->
+    <script src="lib/popSelect-master/src/jquery.popSelect.js"></script>
+    <link rel="stylesheet" href="lib/popSelect-master/css/jquery.popSelect.css">
+    <script>
+        $(document).ready(function() {
+            $('#filterSelect').popSelect({
+                showTitle: true,
+                width: "90%",
+                placeholderText: "Ingen filter valgt. Viser alle",
+                title: "Velg ett eller flere filtere. Fjern filtrene for å vise alle",
+                position: "bottom"
+            });
+        });
+    </script>
+
     <style></style>
 </head>
 
@@ -34,87 +51,24 @@
         </div>
     </div>
 
-    <div class="row"> 
+    <!-- filter -->
+    <div class="row" style="background-color:#1A2520">
 
-        <div class="col-6">
-            <div class="imgContainer">
-
-                <div class="downloadImgCounterContainer">0</div>
-                <img id="v_img1.svg" src="v_img1.svg" class="downloadableImage">
-            </div>
-            </br>
-            <input type="button" value="Legg til print" class="downloadButton" onclick="AddToPrint('v_img1.svg', false);" />
+        <div class="col-12" style="width:100%; height:100%">
+            <select id="filterSelect" name="filterSelect">
+                <option value="letters-numbers">Bokstaver og tall</option>
+                <option value="animals">Dyr</option>
+                <option value="humans">Mennesker</option>
+                <option value="fruit-vegs">Frukt og grønnsaker</option>
+                <option value="patterns">Mønstre</option>
+                <option value="disney">Disney</option>
+                <option value="nintendo">Nintendo</option>
+            </select>
+            <br/>
         </div>
-
-        <div class="col-6">
-            <div class="imgContainer">
-                <div class="downloadImgCounterContainer">0</div>
-                <img id="v_img2.svg" src="v_img2.svg" class="downloadableImage">
-            </div>
-            </br>
-            <input type="button" value="Legg til print" class="downloadButton"  onclick="AddToPrint('v_img2.svg', false);" />
-        </div>
-
-    </div>
-<!-- Adds -->
-    <div class="row">
-
-        <div class="col-12" style="background-color:blue; color:white">
-            Placeholder for Ads
-            </br>
-            </br>
-            </br>
-            </br>
-            </br>
-        </div>
-
-    </div>
-<!-- images 2 row -->
-
-    <div class="row"> 
-
-        <div class="col-6">
-            <div class="imgContainer">
-
-                <div class="downloadImgCounterContainer">0</div>
-                <img id="v_img3.svg" src="v_img3.svg" class="downloadableImage">
-            </div>
-            </br>
-            <input type="button" value="Legg til print" class="downloadButton" onclick="AddToPrint('v_img3.svg', false);" />
-        </div>
-
-        <div class="col-6">
-            <div class="imgContainer">
-                <div class="downloadImgCounterContainer">0</div>
-                <img id="v_img4.svg" src="v_img4.svg" class="downloadableImage">
-            </div>
-            </br>
-            <input type="button" value="Legg til print" class="downloadButton"  onclick="AddToPrint('v_img4.svg', false);" />
-        </div>
-
     </div>
 
-    <div class="row"> 
-
-        <div class="col-6">
-            <div class="imgContainer">
-
-                <div class="downloadImgCounterContainer">0</div>
-                <img id="v_img5.svg" src="v_img5.svg" class="downloadableImage">
-            </div>
-            </br>
-            <input type="button" value="Legg til print" class="downloadButton" onclick="AddToPrint('v_img5.svg', false);" />
-        </div>
-
-        <div class="col-6">
-            <div class="imgContainer">
-                <div class="downloadImgCounterContainer">0</div>
-                <img id="v_img6.svg" src="v_img6.svg" class="downloadableImage">
-            </div>
-            </br>
-            <input type="button" value="Legg til print" class="downloadButton"  onclick="AddToPrint('v_img6.svg', false);" />
-        </div>
-
+    <div id="content">
     </div>
 
 by Andreas

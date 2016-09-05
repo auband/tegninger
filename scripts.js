@@ -36,6 +36,11 @@ function PurgeSelectedImages(){
 
 function OnLoadIndexPage(){
     
+    $.getJSON('imageMetaData.json', function(imageData) {         
+        FillContentFromJson(imageData, 0);
+    });
+   
+
     if(sessionStorage.getItem("selectedImages") != undefined){
         selectedImages = JSON.parse(sessionStorage.getItem("selectedImages"));
 
@@ -136,4 +141,92 @@ function CreateAdRow(){
 
 function OpenPrintDialog(){
     window.print();
+}
+
+function FillContentFromJson(json, startIndex){
+
+    var contentDiv = $("#content");
+
+    var createRow = true;
+    var rowDiv;
+    var appendAdRowAfterController = 0;
+
+    jQuery.each(json, function(i, val){
+
+        var appendAdRowAfter = false;
+
+        if(createRow){
+
+            rowDiv = $("<div class='row'></div>") 
+            contentDiv.append(rowDiv);
+
+            createRow = false;
+
+            if(appendAdRowAfterController == 0){
+                appendAdRowAfter = true;
+                appendAdRowAfterController = 1;
+            }
+            else{
+                appendAdRowAfterController--;
+            }
+        }
+        else{
+            createRow = true;
+        } 
+
+        var columnDiv = $("<div class='col-6'></div>")
+        rowDiv.append(columnDiv);
+
+        var imgContainerDiv = $("<div class='imgContainer'></div>");
+        columnDiv.append(imgContainerDiv);
+
+        imgContainerDiv.append("<div class='downloadImgCounterContainer'>0</div>");
+        imgContainerDiv.append("<img id='"+ val.name + "' class='downloadableImage' src='" + val.path + "'></img>")
+
+        columnDiv.append("</br>");
+
+        var innerRowDiv = $("<div class='row'></div>'");
+        columnDiv.append(innerRowDiv);
+
+        var innerColumnDiv1 = $("<div class='col-4'></div>");
+        innerRowDiv.append(innerColumnDiv1);
+
+        innerColumnDiv1.append("<input type='button' value='Legg til print' class='downloadButton' onclick='AddToPrint(\"v_img1.svg\", false);' />");
+
+        var innerColumnDiv2 = $("<div class='col-8'></div>");
+        innerRowDiv.append(innerColumnDiv2);
+
+        var tagListUl = $("<ul class='tags'></ul>");
+        innerColumnDiv2.append(tagListUl);
+
+        for(y in val.tags){
+            tagListUl.append("<li><a href='#'>"+ TagValueToName(val.tags[y]) +"</a></li>");
+        }
+
+        if(appendAdRowAfter){
+            contentDiv.append(CreateAdRow);
+        }        
+
+    });
+}
+
+function TagValueToName(v){
+    switch(v){
+        case "patterns":
+            return "Mønstre";
+        case "humans":
+            return "Mennesker";
+        case "nintendo":
+            return "Nintendo";
+        case "letters-numbers":
+            return "Bokstaver og tall";
+        case "animals":
+            return "Dyr";
+        case "fruit-vegs":
+            return "Frukt og grønnsaker";
+        case "disney":
+            return "Disney";
+        default:
+            return "Ukjent";
+    }
 }
