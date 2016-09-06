@@ -141,12 +141,13 @@ function CreateColDiv(dementor){
 
 function CreateAdRow(){
     var adColumn = CreateColDiv(12);
-    adColumn.style = "background-color:SteelBlue; color:white";
+    
+    adColumn.classList.add("adColumn");
     adColumn.innerHTML = "Placeholder for ads <br/><br/><br/><br/><br/>"
 
     var adRow = document.createElement("div");
     adRow.classList.add("row");
-    adRow.classList.add("ad");
+    adRow.classList.add("adRow");
     adRow.classList.add("non-printable");
     adRow.appendChild(adColumn);
 

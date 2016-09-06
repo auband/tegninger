@@ -184,12 +184,12 @@
   display: block;
   float: left;
   margin-left: 10px;
-  background-color: #e74c3c;
+  background-color: #2D744E;
   color: white;
   padding: 5px;
   margin-top: 3px;
   padding-right: 10px;
-  border-color: #d43f3a;
+  border-color: #1A2520;
   vertical-align: middle;
   -webkit-transition: 0.25s linear;
   transition: 0.25s linear;
@@ -197,12 +197,12 @@
 }
 
 .popover-select-tags .tag:hover {
-  background-color: #ec7063;
-  border-color: #ec7063;
+  background-color: #1A2520;
+  border-color: #1A2520;
 }
 
 .popover-select-tags .tag .popSelect-close {
-  display: none;
+  display: block;
 }
 
 .popover-select-tags .tag:hover .popSelect-close {
@@ -265,16 +265,17 @@ textarea.popover-select-textarea {
   text-align: center;
   float: left;
   padding: 10px;
-  background-color: #e74c3c;
-  border-color: #d43f3a;
+  background-color: #1A2520;
+  color: white;
+  border-color: #1A2520;
   margin: 5px;
   -webkit-transition: 0.5s all;
 }
 
 .popover-select-list li:hover {
   color: white;
-  background-color: #ec7063;
-  border-color: #ec7063;
+  background-color: #2D744E;
+  border-color: #1A2520;
 }
 
 /* Disable Tags inside a Popover */
