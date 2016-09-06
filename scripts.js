@@ -1,28 +1,40 @@
 
-var countSelectedImages = 0;
-var selectedImages = [];
 
-function AddToPrint(filename, noPush){
+var selectedImageIds = [];
+var waitForAnimation = false;
 
-    if(!noPush)
-        selectedImages.push(filename);
+function AddToPrint(imgId, insertIntoSelectedPrints){
 
-    var divSelectContainer = document.getElementById(filename).parentElement;
-    divSelectContainer.classList.add("imgContainerSelected");
+    if(insertIntoSelectedPrints){
+        selectedImageIds.push(imgId);
+    }    
 
-    var divImgCounterContainer = divSelectContainer.children[0];
-    
-    divImgCounterContainer.classList.add("downloadImgCounterContainerSelected");
-    divImgCounterContainer.classList.remove("downloadImgCounterContainer");
-    divImgCounterContainer.innerHTML++;
-
-    countSelectedImages++;
-    var btnDownloadNow = document.getElementById("btnDownloadNow");
-    btnDownloadNow.value = "Print " + countSelectedImages + " tegninger";
+    SetSelectedForPrintGraphics(imgId);
 }
 
-function GoToPrintPage(){
-    sessionStorage.setItem("selectedImages", JSON.stringify(selectedImages));
+function SetSelectedForPrintGraphics(imgId){
+
+    if(document.getElementById(imgId) != undefined){//element may be hidden
+
+        var divSelectContainer = document.getElementById(imgId).parentElement;
+
+        
+
+        divSelectContainer.classList.add("imgContainerSelected");
+
+        var divImgCounterContainer = divSelectContainer.children[0];
+        
+        divImgCounterContainer.classList.add("downloadImgCounterContainerSelected");
+        divImgCounterContainer.classList.remove("downloadImgCounterContainer");
+        divImgCounterContainer.innerHTML++;
+        
+        var btnDownloadNow = document.getElementById("btnDownloadNow");
+        btnDownloadNow.value = "Print " + selectedImageIds.length + " tegninger";
+    }
+} 
+
+function GoToPrintPage(){   
+    sessionStorage.setItem("selectedImages", JSON.stringify(selectedImageIds)); //must keep for navigation between pages
     window.location.href = 'printPage.htm';
 }
 
@@ -38,21 +50,23 @@ function OnLoadIndexPage(){
     
     $.getJSON('imageMetaData.json', function(imageData) {         
         FillContentFromJson(imageData, 0);
+        ResetPrintStateOnImages(false);
     });
-   
+}
 
-    if(sessionStorage.getItem("selectedImages") != undefined){
-        selectedImages = JSON.parse(sessionStorage.getItem("selectedImages"));
+function ResetPrintStateOnImages(refillArrayOfPrints){
+    if(sessionStorage.getItem("selectedImages") != undefined){//get from storage
+        selectedImageIds = JSON.parse(sessionStorage.getItem("selectedImages"));
 
-        for(var i = 0; i < selectedImages.length; i++){
-            AddToPrint(selectedImages[i], true);
+        for(var i = 0; i < selectedImageIds.length; i++){
+            AddToPrint(selectedImageIds[i], refillArrayOfPrints);
         }
     }
 }
 
 function OnLoadPrintPage(){
     
-    selectedImages = JSON.parse(sessionStorage.getItem("selectedImages"));
+    selectedImageIds = JSON.parse(sessionStorage.getItem("selectedImages"));
 
     var imgContainer = document.getElementById("imgContainer");
 
@@ -61,7 +75,7 @@ function OnLoadPrintPage(){
     var createNewImageRow = true;
     var currentImageRow = undefined;
 
-    for(var i = numberOfImagesAddedController; i < selectedImages.length; i++){
+    for(var i = numberOfImagesAddedController; i < selectedImageIds.length; i++){
         if(createNewImageRow){
             currentImageRow = document.createElement("div");
             currentImageRow.classList.add("row");
@@ -76,7 +90,7 @@ function OnLoadPrintPage(){
 
 
         var createdImg = document.createElement("img");
-        createdImg.src = selectedImages[i];
+        createdImg.src = selectedImageIds[i];
         createdImg.classList.add("downloadableImage");
         
 
@@ -106,7 +120,7 @@ function OnLoadPrintPage(){
         }
 
         //if last
-        if(i+1 == selectedImages.length){
+        if(i+1 == selectedImageIds.length){
             var numberOfEmtyDivsToAdd = 4 - numberOfImagesAddedController;
 
             for(var y = 0; y < numberOfEmtyDivsToAdd; y++){
@@ -143,9 +157,10 @@ function OpenPrintDialog(){
     window.print();
 }
 
-function FillContentFromJson(json, startIndex){
+function FillContentFromJson(json, startIndex, setSelectedGraphics = false){
 
     var contentDiv = $("#content");
+    contentDiv.empty();
 
     var createRow = true;
     var rowDiv;
@@ -154,6 +169,9 @@ function FillContentFromJson(json, startIndex){
     jQuery.each(json, function(i, val){
 
         if(i < startIndex)
+            return;//next
+        
+        if(!IsTagsInFilter(val.tags))
             return;
 
         var appendAdRowAfter = false;
@@ -194,7 +212,7 @@ function FillContentFromJson(json, startIndex){
         var innerColumnDiv1 = $("<div class='col-4'></div>");
         innerRowDiv.append(innerColumnDiv1);
 
-        innerColumnDiv1.append("<input type='button' value='Legg til print' class='downloadButton' onclick='AddToPrint(\"v_img1.svg\", false);' />");
+        innerColumnDiv1.append("<input type='button' value='Legg til print' class='downloadButton' onclick='AddToPrint(\"" + val.name + "\", true);' />");
 
         var innerColumnDiv2 = $("<div class='col-8'></div>");
         innerRowDiv.append(innerColumnDiv2);
@@ -210,38 +228,26 @@ function FillContentFromJson(json, startIndex){
             contentDiv.append(CreateAdRow);
         }       
         
-        imgContainerDiv.data('tags', val.tags);  
+        imgContainerDiv.data('tags', val.tags);
 
+    });//end for each
+
+    
+    contentDiv.show(1000, function(){
+        if(setSelectedGraphics){
+            for(var i = 0; i < selectedImageIds.length; i++){
+                SetSelectedForPrintGraphics(selectedImageIds[i]);
+            }
+        }    
     });
 }
 
-function ApplyFilter(){
-    var filter = $('#filterSelect').popSelect('value');
-
-    if(filter.length == 0){
-        $(".imgContainer").each(function(){$(this).parent().show()});
-        return;    
-    }
-
-    $(".imgContainer").each(function(){
-        var hide = true;
-
-        jQuery.each($(this).data("tags"), function(i, val){           
-
-            if(jQuery.inArray(val, filter) > -1){
-                //image attribute in filter. do not hide
-                hide = false;                
-            }
+function OnChangeFilter(){
+    $("#content").hide(1000, function(){
+        $.getJSON('imageMetaData.json', function(imageData) {         
+            FillContentFromJson(imageData, 0, true);        
         });
-
-        if(hide){
-            $(this).parent().hide();
-        }
-        else{
-            $(this).parent().show();
-        }
-        
-    });;
+    });
 }
 
 function TagValueToName(v){
@@ -263,4 +269,19 @@ function TagValueToName(v){
         default:
             return "Ukjent";
     }
+}
+
+function IsTagsInFilter(tags){
+
+    var filter = $('#filterSelect').popSelect('value');
+
+    if(filter.length == 0) 
+        return true; //empty filter, it is in filter
+
+    for(var i = 0; i < tags.length; i++){
+        if(jQuery.inArray(tags[i], filter) > -1)
+            return true;
+    }
+
+    return false;
 }
