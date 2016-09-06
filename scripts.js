@@ -1,5 +1,5 @@
 
-
+var loadedImages = 0;
 var selectedImageIds = [];
 var waitForAnimation = false;
 
@@ -158,10 +158,13 @@ function OpenPrintDialog(){
     window.print();
 }
 
-function FillContentFromJson(json, startIndex, setSelectedGraphics = false){
+function FillContentFromJson(json, startIndex, setSelectedGraphics = false, maxLoad = 4){
 
     var contentDiv = $("#content");
-    contentDiv.empty();
+
+    if(startIndex == 0){        
+        contentDiv.empty();
+    }
 
     var createRow = true;
     var rowDiv;
@@ -169,11 +172,14 @@ function FillContentFromJson(json, startIndex, setSelectedGraphics = false){
 
     jQuery.each(json, function(i, val){
 
+        if(i >= startIndex + maxLoad)
+            return;//next
+
         if(i < startIndex)
             return;//next
         
         if(!IsTagsInFilter(val.tags))
-            return;
+            return;//next
 
         var appendAdRowAfter = false;
 
@@ -231,8 +237,13 @@ function FillContentFromJson(json, startIndex, setSelectedGraphics = false){
         
         imgContainerDiv.data('tags', val.tags);
 
+        loadedImages++;
+
     });//end for each
 
+    if(json.length == loadedImages){
+        $(".loadMoreButton").hide();
+    }    
     
     contentDiv.show(1000, function(){
         if(setSelectedGraphics){
@@ -240,13 +251,13 @@ function FillContentFromJson(json, startIndex, setSelectedGraphics = false){
                 SetSelectedForPrintGraphics(selectedImageIds[i]);
             }
         }    
-    });
+    });    
 }
 
 function OnChangeFilter(){
     $("#content").hide(1000, function(){
         $.getJSON('imageMetaData.json', function(imageData) {         
-            FillContentFromJson(imageData, 0, true);        
+            FillContentFromJson(imageData, 0, true, loadedImages);        
         });
     });
 }
@@ -285,4 +296,11 @@ function IsTagsInFilter(tags){
     }
 
     return false;
+}
+
+function LoadMore(){
+    $.getJSON('imageMetaData.json', function(imageData) {         
+        FillContentFromJson(imageData, loadedImages);
+        ResetPrintStateOnImages(false);
+    });
 }

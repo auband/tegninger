@@ -128,8 +128,22 @@ html {
     padding-right:10px;
 	text-decoration:none;
     min-width: 45%;
-    /*margin-left: 25%;
-    margin-right: 25%;*/
+    margin-bottom: 1%;
+    margin-top: 5%;
+}
+
+.loadMoreButton {
+	background-color:#1A2520;
+	
+	border:none;
+	display:inline-block;
+	cursor:pointer;
+	color:white;
+	font-family:Arial;
+	font-size:19px;
+    padding:12px 37px;
+	text-decoration:none;
+    min-width: 45%;
     margin-bottom: 1%;
     margin-top: 5%;
 }
